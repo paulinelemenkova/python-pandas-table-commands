@@ -1,16 +1,28 @@
 #!/usr/bin/env python
 # coding: utf-8
+"""Pandas DataFrame Table Commands with Python
+
+Author:  Polina Lemenkova
+ORCID:   https://orcid.org/0000-0002-5759-1089
+Archive: https://doi.org/10.13140/RG.2.2.20867.35366
+License: MIT
+
+See README.md for details.
+"""
+import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
+from matplotlib.colors import ListedColormap
+# libraries
+from mpl_toolkits.mplot3d import Axes3D
 
 # In[201]:
 
 
-# libraries
-from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
-import numpy as np
-import seaborn as sns
-import pandas as pd
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # Dataset
 df = pd.read_csv("Tab-Bathy.csv")
@@ -46,13 +58,13 @@ data['sedim_thick'].describe()
 # Splitting the data into different groups bya variable
 data.groupby(['slope_class']).groups.keys()
 
-#data.groupby('slope_class')['profile'].sum() # produces Pandas Series
-data.groupby('slope_class', as_index=False)[['profile']].sum() # produces Pandas DF
+# data.groupby('slope_class')['profile'].sum() # produces Pandas Series
+data.groupby('slope_class', as_index=False)[['profile']].sum()  # produces Pandas DF
 
-#print(df.head)
+# print(df.head)
 print(type(data))
-#df
-#data
+# df
+# data
 
 data.shape
 df.shape
@@ -67,7 +79,7 @@ data.sedim_thick
 data['sedim_thick']
 data.loc[:, 'sedim_thick']
 data.iloc[:, [1, 2, 3, 4]]
-data.iloc[0:5, :] # selecting 5 first rows
+data.iloc[0:5, :]  # selecting 5 first rows
 
 df['profile23'].plot(kind='hist', bins=100)
 plt.xlabel('profiles')
@@ -76,5 +88,4 @@ plt.ylabel('depths')
 myplot = data['Min']
 
 myplot
-myplot.sort_values().plot(kind ='bar', color=sns.color_palette('Spectral'))
-
+myplot.sort_values().plot(kind='bar', color=sns.color_palette('Spectral'))
